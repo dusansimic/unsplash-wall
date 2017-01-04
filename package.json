@@ -1,0 +1,22 @@
+{
+  "name": "unsplash-wall",
+  "version": "0.0.1",
+  "description": "Random wallpaper setting app.",
+  "main": "main.js",
+  "dependencies": {
+    "request": "^2.79.0",
+    "wallpaper": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node main.js",
+    "start": "node main.js"
+  },
+  "keywords": [
+    "random",
+    "wallpaper",
+    "unsplash"
+  ],
+  "author": "Dušan Simić",
+  "license": "MIT"
+}
