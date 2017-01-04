@@ -14,6 +14,7 @@ var download = function(uri, filename, callback){
 var main = function() {
   wallSource = "random";
   wallRes = "1920x1080";
+  // get command line args
   if (process.argv.length > 2) {
     if (process.argv[2] === "-s") {
       wallSource = process.argv[3];
@@ -25,12 +26,12 @@ var main = function() {
       wallRes = process.argv[5];
     }
   }
-
+  // start the download
   download('https://source.unsplash.com/' + wallSource + '/' + wallRes, 'wall.jpg', function(){
     console.log('download ... done');
+    // after download is done set the wallpaper
+    wallpaper.set('wall.jpg').then(console.log('setting ... done'));
   });
-
-  wallpaper.set('wall.jpg').then(console.log('setting ... done'));
 }
 
 main();
