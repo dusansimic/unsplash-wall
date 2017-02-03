@@ -17,6 +17,9 @@ var printHelp = function() {
   console.log();
   console.log("   -h                  | print help");
   console.log("   -c <category>       | enter wallpaper category");
+  categories.forEach(function(category) {
+    console.log('      ', category);
+  });
   console.log("   -r <width>x<height> | enter wallpaper resolution");
   console.log();
 }
@@ -34,11 +37,13 @@ var main = function() {
     for (var i = 2; i <= process.argv.length; i++) {
       if (process.argv[i] === "-h") {
         printHelp();
+        process.exit();
       }
       if (process.argv[i] === "-c") {
         i++;
         if (process.argv[i] !== undefined) {
           category = 'category/' + process.argv[i];
+          console.log('Category:', process.argv[i]);
           allowDownload = true;
         } else {
           console.error('you did not enter category after -c flag');
@@ -47,13 +52,16 @@ var main = function() {
       if (process.argv[i] === "-u") {
         i++;
         if (process.argv[i] !== undefined) {
-
+          user = 'user/' + process.argv[i];
+          console.log('User:', process.argv[i]);
+          allowDownload = true;
         }
       }
       if (process.argv[i] === "-r") {
         i++;
         if (process.argv[i] !== undefined) {
           resolution = process.argv[i];
+          console.log('Resolution:', process.argv[i]);
           allowDownload = true;
         } else {
           console.error('you did not enter resolution after -r flag');
@@ -65,18 +73,20 @@ var main = function() {
     }
   }
 
-  var wallpaperURL = 'https://source.unsplash.com/';
 
-  if (useCategory) {
-    wallpaperURL += ('category/' + category);
-  } else {
-    wallpaperURL += ('user/' + user);
-  }
-
-  var wallpaperURL += ('/' + resolution);
 
   // start the download
   if (allowDownload) {
+    var wallpaperURL = 'https://source.unsplash.com/';
+
+    if (useCategory) {
+      wallpaperURL += category;
+    } else {
+      wallpaperURL += ('user/' + user);
+    }
+
+    wallpaperURL += ('/' + resolution);
+    console.log(wallpaperURL);
     download(wallpaperURL, 'wall.jpg', function(){
       console.log('download ... done');
       // after download is done set the wallpaper
