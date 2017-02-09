@@ -87,10 +87,20 @@ var main = function() {
 
     wallpaperURL += ('/' + resolution);
     console.log(wallpaperURL);
-    download(wallpaperURL, 'wall.jpg', function(){
+    download(wallpaperURL, '/tmp/wall.jpg', function(){
       console.log('download ... done');
       // after download is done set the wallpaper
-      wallpaper.set('wall.jpg').then(console.log('setting ... done'));
+      wallpaper.set('/tmp/wall.jpg').then(function() {
+        console.log('setting ... done');
+        // in the end remove downloaded jpg file
+        /*
+        fs.unlink('/tmp/wall.jpg', (err) => {
+          if (err) throw err;
+          console.log('removing downloaded jpg ... done');
+        });
+        */
+      });
+
     });
   } else {
     console.log('if you want to use default settings please use --use-default flag');
