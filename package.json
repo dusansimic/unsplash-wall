@@ -2,15 +2,21 @@
   "name": "unsplash-wall",
   "version": "0.0.1",
   "description": "Random wallpaper setting app.",
-  "main": "main.js",
-  "dependencies": {
-    "request": "^2.79.0",
-    "wallpaper": "^2.3.0"
+  "bin": {
+    "unsplash-wall": "./app.js",
+    "unwall": "./app.js"
   },
-  "devDependencies": {},
+  "main": "app.js",
+  "preferGlobal": true,
+  "dependencies": {
+    "commander": "^2.11.0",
+    "download": "^6.2.5",
+    "ora": "^1.3.0",
+    "unsplash-source-js": "^1.0.0",
+    "wallpaper": "^2.5.0"
+  },
   "scripts": {
-    "test": "node main.js",
-    "start": "node main.js"
+    "dev": "node app.js"
   },
   "keywords": [
     "random",
